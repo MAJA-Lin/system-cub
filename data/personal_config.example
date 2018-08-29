@@ -1,0 +1,7 @@
+GIT_USER_NAME="Hola Amigo"
+GIT_USER_EMAIL="prova@example.com"
+
+SSH_KEYS_FOLDER="$HOME/.ssh"
+GIT_SSH_KEY="$SSH_KEYS_FOLDER/default"
+
+NODE_VERSION="v10.9.0"

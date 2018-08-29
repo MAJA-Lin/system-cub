@@ -1,0 +1,63 @@
+#!/bin/bash
+
+
+function setup_personal_setting {
+    setup_git
+}
+
+function setup_git {
+    echo_message header "Setting git user information..."
+
+    PERSONAL_CONFIG=$(dirname "$0")'/data/personal_config'
+    if [ -f $PERSONAL_CONFIG ]; then
+        # Read git configuration
+        source $PERSONAL_CONFIG
+        git config --global user.name "$GIT_USER_NAME"
+        git config --global user.email "$GIT_USER_EMAIL"
+
+        # Generate ssh key
+        echo_message info "Generate git ssh key now..."
+        ssh-keygen -b 2048 -t rsa -f $GIT_SSH_KEY -q -N ""
+
+        setup_git_alias
+    else
+        echo_message question "Personal config file not found, please create it by example file..."
+    fi
+}
+
+function setup_git_alias {
+    echo_message question 'Would you like to setup git alias? (Y)es, (N)o : ' && read REPLY
+    case $REPLY in
+        # Positive action
+        [Yy]* )
+            echo_message warning "Setting up alias..."
+            source $(dirname "$0")'/data/git_alias.list'
+            ;;
+        # Negative action
+        [Nn]* )
+            ;;
+        # Error
+        * )
+            echo_message error 'Sorry, try again.' && setup_git_alias
+            ;;
+    esac
+}
+
+
+function update_repository_info {
+    echo_message info 'Refreshing repository information...'
+
+    superuser_do 'apt update -y -qq'
+    echo_message success 'Repository information updated.'
+}
+
+function read_personal_config {
+    PERSONAL_CONFIG=$(dirname "$0")'/data/personal_config'
+
+    if [ -f $PERSONAL_CONFIG ]; then
+        # Read git configuration
+        source $PERSONAL_CONFIG
+    else
+        echo_message question "Personal config file not found, please create it by example file..."
+    fi
+}

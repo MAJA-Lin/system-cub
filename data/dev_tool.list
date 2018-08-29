@@ -1,0 +1,4 @@
+install_docker=true
+install_vscode=true
+install_nvm=true
+install_php_package=true
