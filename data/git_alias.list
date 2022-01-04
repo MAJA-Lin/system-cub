@@ -4,7 +4,11 @@ git config --global alias.ci commit
 git config --global alias.st status
 git config --global alias.cp cherry-pick
 git config --global alias.fap "fetch --all -p"
+git config --global alias.fod "fetch origin develop:develop"
+git config --global alias.fom "fetch origin master:master"
+git config --global alias.fom2 "fetch origin main:main"
 git config --global alias.diffc "diff --cached"
+git config --global alias.difc "diff --cached"
 git config --global alias.tree "log --graph --decorate --pretty=oneline --abbrev-commit"
 git config --global alias.lg1 "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) -     %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
 git config --global alias.lg2 "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD    %C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%    C(reset)' --all"
